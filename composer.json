@@ -1,0 +1,28 @@
+{
+  "name": "repo/name",
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "wordpress/wordpress",
+        "type": "webroot",
+        "version": "4.1.1",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/WordPress/WordPress.git",
+          "reference": "4.1.1"
+        },
+        "require": {
+          "fancyguy/webroot-installer": "1.0.0"
+        }
+      }
+    }
+  ],
+  "require": {
+    "wordpress/wordpress": "4.1.*"
+  },
+  "extra": {
+    "webroot-dir": "public/wordpress",
+    "webroot-package": "wordpress/wordpress"
+  }
+}
