@@ -53,4 +53,4 @@ Below is example of the `composer.json` to manage plugins too:
 }
 ```
 
-Don't forget to add `public/content/plugins` to your .gitignore
+Don't forget to add `public/content/plugins` to your `.gitignore`
