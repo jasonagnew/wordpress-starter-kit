@@ -19,7 +19,8 @@
     }
   ],
   "require": {
-    "wordpress/wordpress": "4.1.*"
+    "wordpress/wordpress": "4.1.*",
+    "vlucas/phpdotenv": "1.1.*"
   },
   "extra": {
     "webroot-dir": "public/wordpress",

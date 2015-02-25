@@ -58,8 +58,7 @@ testing
 
 # WordPress
 public/wordpress
-wp-config-local.php
-wp-config-live.php
+.env
 
 # Provided App Template
 app/*

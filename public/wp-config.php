@@ -1,40 +1,51 @@
 <?php
 
-$example_config = "<pre>"
-    . "define('DB_NAME',     'DB_NAME');     \r\n"
-    . "define('DB_USER',     'DB_USER');     \r\n"
-    . "define('DB_PASSWORD', 'DB_PASSWORD'); \r\n"
-    . "define('DB_HOST',     'DB_HOST');"
-    . "</pre>";
-
+/**
+ * Set root path
+ */
+$rootPath = realpath(__DIR__ . '/..');
 
 /**
- * Detect environment and load config.
+ * Include the Composer autoload
  */
-if (strpos($_SERVER['SERVER_NAME'], '.dev'))
+include $rootPath . '/vendor/autoload.php';
+
+/**
+ * Fetch .env or let the user know to add one
+ */
+if (file_exists($rootPath . '/.env'))
 {
-    if (file_exists(__DIR__ . '/wp-config-local.php'))
-        include 'wp-config-local.php';
-    else
-        die('<h1>Please add a `wp-config-local.php` file.</h1><strong>Example file:</strong>' . $example_config);
-
-    $server_url = 'http://' . $_SERVER['HTTP_HOST'];
-
-    define('WP_DEBUG', true);
-    define('WP_LOCAL_DEV', true);
+    Dotenv::load($rootPath);
 }
 else
 {
-    if (file_exists(__DIR__ . '/wp-config-live.php'))
-        include 'wp-config-live.php';
-    else
-        die('<h1>Please add a `wp-config-live.php` file.</h1><strong>Example file:</strong>' . $example_config);
-
-    $server_url = 'http://' . $_SERVER['SERVER_NAME'];
-
-    define('WP_DEBUG', false);
-    define('WP_LOCAL_DEV', false);
+    die('Please add a .env file');
 }
+
+/**
+ * Set URL
+ */
+$server_url = 'http://' . $_SERVER['HTTP_HOST'];
+
+/**
+ * Define in environment
+ */
+define('APP_ENV',     getenv('APP_ENV'));
+
+/**
+ * Set Database Details
+ */
+define('DB_NAME',     getenv('DB_NAME'));
+define('DB_USER',     getenv('DB_USER'));
+define('DB_PASSWORD', getenv('DB_PASSWORD'));
+define('DB_HOST',     getenv('DB_HOST'));
+
+/**
+ * Set debug modes
+ */
+define('WP_DEBUG', (bool) getenv('WP_DEBUG'));
+define('WP_LOCAL_DEV', (bool) getenv('WP_LOCAL_DEV'));
+
 
 /**
  * Set custom paths

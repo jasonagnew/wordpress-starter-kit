@@ -4,6 +4,20 @@ Basic folder structure for starting WordPress, including environment based confi
 
 **Note**: Uploads are ignored from git. Use WP Migrate DB Pro to handle media files & database syncing.
 
+## Database settings & Environments
+ 
+ To config your database per environment use the `.env.example` file - copy and rename to `.env`
+ 
+ ```
+ APP_ENV=local
+ DB_NAME=wp_database
+ DB_USER=root
+ DB_PASSWORD=password
+ DB_HOST=localhost
+ WP_DEBUG=true
+ WP_LOCAL_DEV=true
+ ```
+
 ## Good Workflow with WordPress
 
 While developing the site, its ideal to set up a demo site on a server based in your office. This acts as central location for a client to edit and add media files. Your local copy should point  to the database of the demo site. This approach allows teams to work together while still developing locally. All deployments should be handled using git remotes. Media files can be synced locally by using WP Migrate DB Pro.
